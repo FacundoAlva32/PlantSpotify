@@ -1,46 +1,21 @@
 {
     "version": 2,
-    "name": "spotify-card-generator",
-    "builds": [
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
+    "functions": {
+        "api/spotify-token.js": {
+            "maxDuration": 10
         },
-        {
-            "src": "api/**/*.js",
-            "use": "@vercel/node"
+        "api/track-info.js": {
+            "maxDuration": 10
         }
-    ],
+    },
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/public/$1"
-        }
-    ],
-    "headers": [
+            "src": "/api/spotify-token",
+            "dest": "/api/spotify-token.js"
+        },
         {
-            "source": "/api/(.*)",
-            "headers": [
-                {
-                    "key": "Access-Control-Allow-Credentials",
-                    "value": "true"
-                },
-                {
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "*"
-                },
-                {
-                    "key": "Access-Control-Allow-Methods",
-                    "value": "GET,OPTIONS,POST"
-                },
-                {
-                    "key": "Access-Control-Allow-Headers",
-                    "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-                }
-            ]
+            "src": "/api/track-info",
+            "dest": "/api/track-info.js"
         }
-    ],
-    "env": {
-        "NODE_ENV": "production"
-    }
+    ]
 }

@@ -1,19 +1,12 @@
 {
-    "name": "spotify-card-generator",
+    "name": "plant-spotify",
     "version": "1.0.0",
-    "description": "Generador de tarjetas Spotify personalizadas",
-    "main": "public/index.html",
+    "description": "Generador de tarjetas Spotify",
     "scripts": {
-        "start": "vercel dev",
-        "deploy": "vercel --prod"
+        "build": "echo 'Static site - no build required'"
     },
     "dependencies": {
-        "axios": "^1.6.0"
-    },
-    "devDependencies": {
-        "vercel": "^28.0.0"
-    },
-    "engines": {
-        "node": ">=16.0.0"
+        "axios": "^1.6.0",
+        "dotenv": "^17.2.3"
     }
 }

@@ -4,101 +4,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify Card Generator Pro</title>
+  <title>PlantSpotify - Generador de Tarjetas</title>
 
-  <!-- Fuentes y Iconos -->
+  <!-- Fuentes -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Dancing+Script:wght@600&family=Special+Elite&family=Poppins:wght@400;600&display=swap"
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Scripts Externos -->
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-  <!-- Estilos Locales -->
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Panel de Control Lateral -->
+  <!-- Panel de Control -->
   <div class="sidebar">
-    <h2>Editor de Tarjeta</h2>
+    <h2><i class="fas fa-music"></i> PlantSpotify Editor</h2>
 
-    <label>Link Spotify</label>
+    <!-- Link de Spotify -->
+    <label><i class="fas fa-link"></i> Link Spotify</label>
     <div class="input-with-btn">
-      <input id="link" placeholder="Pegar enlace de canción...">
-      <button class="btn-small btn-check" onclick="updateCode()" title="Confirmar Link">
-        <i class="fas fa-check"></i>
+      <input id="link" placeholder="Pega enlace de Spotify...">
+      <button class="btn-small btn-check" onclick="updateCode()" title="Obtener datos">
+        <i class="fas fa-download"></i>
       </button>
     </div>
 
-    <label>Subir Portada</label>
+    <!-- Portada -->
+    <label><i class="fas fa-image"></i> Portada Personalizada</label>
     <div class="input-with-btn">
       <input type="file" id="imgUpload" accept="image/*">
-      <button class="btn-small btn-trash" onclick="removeCover()" title="Eliminar Portada">
-        <i class="fas fa-trash"></i>
+      <button class="btn-small btn-trash" onclick="removeCover()" title="Quitar portada">
+        <i class="fas fa-times"></i>
       </button>
     </div>
 
+    <!-- Canción y Artista -->
     <div class="control-group">
       <div>
-        <label>Canción</label>
-        <input id="inSong" placeholder="Nombre Canción">
+        <label><i class="fas fa-headphones"></i> Canción</label>
+        <input id="inSong" placeholder="Nombre canción">
       </div>
       <div>
-        <label>Artista</label>
-        <input id="inArtist" placeholder="Nombre Artista">
+        <label><i class="fas fa-user"></i> Artista</label>
+        <input id="inArtist" placeholder="Nombre artista">
       </div>
     </div>
 
-    <label>Frase</label>
-    <textarea id="inPhrase" rows="2">"Yo viajo a tu lado con lo bueno y lo malo"</textarea>
+    <!-- Frase -->
+    <label><i class="fas fa-quote-left"></i> Frase Personal</label>
+    <textarea id="inPhrase" rows="2"
+      placeholder="Escribe tu frase...">"Yo viajo a tu lado con lo bueno y lo malo"</textarea>
 
     <hr>
 
+    <!-- Colores -->
     <div class="control-group">
       <div>
-        <label>Texto</label>
+        <label><i class="fas fa-palette"></i> Texto</label>
         <input type="color" id="textColor" value="#000000">
       </div>
       <div>
-        <label>Acento</label>
-        <input type="color" id="accentColor" value="#ff0000">
+        <label><i class="fas fa-fill-drip"></i> Acento</label>
+        <input type="color" id="accentColor" value="#1DB954">
       </div>
     </div>
 
+    <!-- Fondo -->
     <div class="control-group">
       <div>
-        <label>Fondo</label>
-        <input type="color" id="bgColor" value="#ffffff">
+        <label><i class="fas fa-square"></i> Fondo</label>
+        <input type="color" id="bgColor" value="#FFFFFF">
       </div>
       <div>
-        <label>Opacidad</label>
+        <label><i class="fas fa-adjust"></i> Opacidad</label>
         <input type="range" min="0" max="1" step="0.1" value="1" id="bgOpacity">
       </div>
     </div>
 
+    <!-- Borde y Redondez -->
     <div class="control-group">
       <div>
-        <label>Color Borde</label>
+        <label><i class="fas fa-border-style"></i> Borde</label>
         <input type="color" id="borderColor" value="#000000">
       </div>
       <div>
-        <label>Grosor Borde</label>
+        <label><i class="fas fa-border-all"></i> Grosor</label>
         <input type="range" min="0" max="20" step="1" value="0" id="borderWidth">
       </div>
     </div>
-
     <div class="control-group">
       <div>
-        <label>Color Código</label>
+        <label><i class="fas fa-circle-notch"></i> Redondez</label>
+        <input type="range" min="0" max="50" step="1" value="0" id="borderRadius">
+      </div>
+    </div>
+
+    <!-- Sombra y Blur -->
+    <div class="control-group">
+      <div>
+        <label><i class="fas fa-cloud"></i> Sombra</label>
+        <input type="range" min="0" max="100" step="1" value="0" id="shadowIntensity">
+      </div>
+      <div>
+        <label><i class="fas fa-tint"></i> Difuminado</label>
+        <input type="range" min="0" max="20" step="1" value="0" id="blurIntensity">
+      </div>
+    </div>
+
+    <!-- QR y Fuente -->
+    <div class="control-group">
+      <div>
+        <label><i class="fas fa-qrcode"></i> QR Color</label>
         <select id="codeColor">
           <option value="black">Negro</option>
           <option value="white">Blanco</option>
         </select>
       </div>
       <div>
-        <label>Fuente Frase</label>
+        <label><i class="fas fa-font"></i> Fuente Frase</label>
         <select id="fontStyle">
           <option value="font-hand">Manuscrita</option>
           <option value="font-type">Máquina</option>
@@ -107,43 +134,58 @@
       </div>
     </div>
 
+    <!-- Progreso -->
     <div class="control-group">
       <div>
-        <label>Progreso</label>
-        <input type="range" id="progRange" min="0" max="100" value="20">
+        <label><i class="fas fa-chart-line"></i> Progreso</label>
+        <input type="range" id="progRange" min="0" max="100" value="30">
       </div>
       <div>
-        <label>Duración</label>
-        <input id="inTime" value="03:30" placeholder="03:30" style="text-align: center;">
+        <label><i class="fas fa-clock"></i> Tiempo Actual</label>
+        <input id="inTime" value="00:00" placeholder="mm:ss">
       </div>
     </div>
 
-    <label>Tamaño Tarjeta</label>
+    <!-- Tamaño -->
+    <label><i class="fas fa-expand-alt"></i> Tamaño Tarjeta</label>
     <input type="range" min="300" max="500" value="350" id="cardSize">
 
+    <!-- Botones Finales -->
     <div class="action-buttons">
       <button class="btn-reset" onclick="resetConfig()">
-        <i class="fas fa-trash"></i> Reset
+        <i class="fas fa-redo"></i> Reiniciar
       </button>
       <button class="btn-confirm" onclick="downloadPNG()">
-        <i class="fas fa-check"></i> Descargar
+        <i class="fas fa-download"></i> Descargar PNG
+      </button>
+    </div>
+
+    <!-- Debug (opcional) -->
+    <div style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 8px; font-size: 11px;">
+      <div style="display: flex; justify-content: space-between;">
+        <span>Estado API:</span>
+        <span id="apiStatus" style="color: #1DB954;">● Conectado</span>
+      </div>
+      <button onclick="testAPIs()"
+        style="width: 100%; margin-top: 8px; padding: 6px; background: #3498db; color: white; border: none; border-radius: 4px; font-size: 10px;">
+        <i class="fas fa-bug"></i> Probar APIs
       </button>
     </div>
   </div>
 
-  <!-- Área Principal de Vista Previa -->
+  <!-- Vista Previa -->
   <div class="main">
     <div id="card">
-      <!-- Contenedor de Portada -->
+      <!-- Portada -->
       <div class="cover-container" id="coverContainer">
-        <div id="coverImg" class="cover-bg"></div>
+        <img id="coverImg" class="cover-bg" src="" crossorigin="anonymous" alt="Portada de álbum">
       </div>
 
       <!-- Encabezado -->
       <div class="header">
         <div>
-          <div class="song" id="outSong">Canción</div>
-          <div class="artist" id="outArtist">Artista</div>
+          <div class="song" id="outSong">Nombre Canción</div>
+          <div class="artist" id="outArtist">Nombre Artista</div>
         </div>
         <i class="fas fa-heart heart"></i>
       </div>
@@ -153,8 +195,8 @@
         <div class="bar-fill" id="barFill"></div>
       </div>
       <div class="times">
-        <span id="currTime">00:52</span>
-        <span id="endTime">05:10</span>
+        <span id="currTime">01:15</span>
+        <span id="endTime">03:30</span>
       </div>
 
       <!-- Controles -->
@@ -169,7 +211,8 @@
       <!-- Código QR -->
       <div class="code">
         <img id="code" crossorigin="anonymous"
-          src="https://scannables.scdn.co/uri/plain/png/000000/white/800/spotify:track:5p7GiZKxLC2cisUKqLC0vW">
+          src="https://scannables.scdn.co/uri/plain/png/000000/white/800/spotify:track:5p7GiZKxLC2cisUKqLC0vW"
+          alt="Spotify Code">
       </div>
 
       <!-- Frase -->
@@ -177,7 +220,7 @@
     </div>
   </div>
 
-  <!-- JavaScript Local -->
+  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 
